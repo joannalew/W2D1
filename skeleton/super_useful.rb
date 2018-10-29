@@ -35,6 +35,13 @@ end
 # PHASE 4
 class BestFriend
   def initialize(name, yrs_known, fav_pastime)
+    if name.length <=0 || fav_pastime.length <= 0
+      raise "What kind of bestfriend does not put in his name or favorite pastime."
+    end 
+    
+    if yrs_known < 5
+      raise "I don't know you! Stranger Danger"
+    end 
     @name = name
     @yrs_known = yrs_known
     @fav_pastime = fav_pastime
