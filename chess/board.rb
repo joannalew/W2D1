@@ -24,12 +24,16 @@ class Board
   end 
   
   def move_piece(start_pos, end_pos)
+    is_valid?(start_pos, end_pos)
+    self[start_pos], self[end_pos] = self[end_pos], self[start_pos]  
+  end 
+  
+  def is_valid?(start_pos, end_pos)
     if self[start_pos].nil?
       raise "there is no piece there, buddy!"
     elsif end_pos[0] >= 8 ||end_pos[0] < 0 || end_pos[1] >= 8 ||end_pos[1] < 0
-      raise "Out of bound, buddy!"
+       raise "Out of bound, buddy!"
     end
-    self[start_pos], self[end_pos] = self[end_pos], self[start_pos]  
   end 
     
 end
