@@ -1,0 +1,38 @@
+<% content_for :page_logo do %>
+	<h2 class="page-logo">Make a New Album</h2>
+<% end %>
+
+<form class="user-form" action="<% albums_url %>" method="post">
+  <%= auth_token %>
+  <div class="flexing">
+    <label for="title">Title</label>
+    <input id="title" type="text" name="album[title]" value="">
+  </div>
+
+  <div class="flexing">
+    <label for="year">Year</label>
+    <input id="year" type="number" min="1500" max="2099" step="1" value="2018">
+  </div>
+
+  <div class="flexing">
+    <label for="bands">Band</label>
+    <select id="bands" class="band-dropdown" name="album[band_id]">
+      <% Band.all.each do |band| %>
+        <option value="<%= band.id %>"
+                selected=<%= "selected" if band.id == params[:band_id] %>>
+                <%= band.name %></option>
+      <% end %>
+    </select>
+  </div>
+
+  <div class="flexing">
+    <label>Type</label>
+    <div>
+      <input type="radio" name="album[studio]" value="true" checked> Studio Record
+      <input type="radio" name="album[studio]" value="false"> Live Show
+    </div>
+  </div>
+
+
+
+</form>

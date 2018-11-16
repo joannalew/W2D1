@@ -1,0 +1,17 @@
+<% content_for :page_logo do %>
+	<h2 class="page-logo">Log In</h2>
+<% end %>
+
+<form class="user-form" action="<%= session_url %>" method="post">
+	<%= auth_token %>
+	<div class="flexing">
+    <label for="mail">Email:</label>
+    <input id="mail" type="text" name="user[email]" value="">
+  </div>
+  
+	<div class="flexing">
+    <label for="pw">Password:</label>
+    <input id = "pw" type="text" name="user[password]" value="">
+  </div>
+	<input class="button" type="submit" value="Log In">
+</form>

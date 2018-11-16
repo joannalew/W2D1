@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MusicApp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bungee+Inline" rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="main-content">
+      <h1 class="main-logo">Music App</h1>
+
+      <%= yield :page_logo %>
+
+      <% if logged_in? %>
+        <form action="<%= session_url %>" method="post">
+        <%= auth_token %>
+          <input type="hidden" name="_method" value="delete">
+          <input type="submit" name="" value="Log Out">
+        </form>
+      <% else %>
+        <% if request.fullpath == "/users/new" %>
+          <a class="button" href="<%= new_session_url %>">Go to Log In</a>
+        <% else %>
+          <a class="button" href="<%= new_user_url %>">Go to Sign Up</a>
+        <% end %>
+      <% end %>
+
+
+      <%= yield %>
+    </div>
+  </body>
+
+</html>
